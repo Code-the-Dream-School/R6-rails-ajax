@@ -3,11 +3,52 @@
 <%= link_to 'Session', '/ajax/session' %>
 <div id="rest-ops">
 <button id="list-members" type="button">List members</button><br>
-<label>member first name</label><input id="member-firstName"><label>member last name</label>
-<input id="member-lastName"><button id="create-member" type="button">Create member</button><br>
-<label>member ID</label><input id="member-id" type="number"><label>member first name</label>
-<input id="member-firstName1"><label>member last name</label>
-<input id="member-lastName1"><button id="update-member" type="button">Update member</button><br>
+<div class="row">
+    <div class="col-4">
+        <label>first name</label><input id="member-firstName">
+    </div>
+    <div class="col-4">
+        <label>last name</label><input id="member-lastName">
+    </div>
+    <div class="col-4">
+        <button id="create-member" type="button">Create member</button><br>
+    </div>
 </div>
+<div class="row">
+<div class="col-3">
+    <label>member ID</label><input id="member-id" type="number">
+    </div>
+    <div class="col-3">
+    <label>first name</label><input id="member-firstName1">
+    </div>
+    <div class="col-3">
+    <label>last name</label><input id="member-lastName1">
+    </div>
+    <div class="col-3">
+    <button id="update-member" type="button">Update member</button><br>
+    </div>
+</div>
+<div class="row">
+<div class="col-3">
+    <label>member ID</label><input id="facts-id" type="number">
+    </div>
+    <div class="col-3">
+    <label>facts</label><input id="member-facts">
+    </div>
+    <div class="col-3">
+    <label>likes</label><input id="member-likes">
+    </div>
+    <div class="col-3">
+    <button id="create-member-facts" type="button">Create facts</button><br>
+    </div>
+</div>
+    <label>member Id</label><input id="list-id">
+    <button id="list-member-facts" type="button">List facts</button><br>
+
+    <label>member Id</label><input id="delete-id">
+<button id="delete-member" type="button">Delete member</button>
+</div>
+</div>
+
 <div id="results-div"></div>
 <%= javascript_pack_tag 'ajax_ops' %>
