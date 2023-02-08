@@ -4,21 +4,29 @@ function handle_ajax(event) {
   const resultsDiv = document.getElementById("results-div");
   const restOpsDiv = document.getElementById("rest-ops");
   const listMembersButton = document.getElementById("list-members");
-  const createMemberButton = document.getElementById("create-member");
   const firstName = document.getElementById("member-firstName");
   const lastName = document.getElementById("member-lastName");
-  const updateMemberButton = document.getElementById("update-member");
-  const deleteMemberButton = document.getElementById("delete-member");
-  const listMemberButton = document.getElementById("list-member");
+  const createMemberButton = document.getElementById("create-member");
   const memberID = document.getElementById("member-id");
-  const deleteID = document.getElementById("delete-id");
-  const listID = document.getElementById("list-id");
   const firstName1 = document.getElementById("member-firstName1");
   const lastName1 = document.getElementById("member-lastName1");
-  const createMemberFacts = document.getElementById("create-member-facts");
+  const updateMemberButton = document.getElementById("update-member");
   const factsID = document.getElementById("facts-id");
-  const memberLikes = document.getElementById("member-likes");
   const memberFacts = document.getElementById("member-facts");
+  const memberLikes = document.getElementById("member-likes");
+  const createMemberFacts = document.getElementById("create-member-facts");
+  const updateMemberID = document.getElementById("update-facts-id");
+  const factID = document.getElementById("fact-id");
+  const updateMemberFact = document.getElementById("update-member-fact");
+  const updateMemberLike = document.getElementById("update-member-likes");
+  const updateMemberFacts = document.getElementById("update-member-facts");
+  const listID = document.getElementById("list-id");
+  const listFacts = document.getElementById("list-member-facts");
+  const deleteMemberID = document.getElementById("delete-member-id");
+  const deleteFactID = document.getElementById("delete-fact-id");
+  const deleteFact = document.getElementById("delete-fact");
+  const deleteID = document.getElementById("delete-id");
+  const deleteMemberButton = document.getElementById("delete-member");
   const members_path = "http://localhost:3001/api/v1/members";
 
   restOpsDiv.addEventListener("click", (event) => {
@@ -126,11 +134,10 @@ function handle_ajax(event) {
           "Content-Type": "application/json",
           authorization: authHeader,
         },
-        // body: JSON.stringify(dataObject),
       }).then(() => {
         resultsDiv.innerHTML = "Delete Successful!";
       });
-    } else if (event.target === listMemberButton) {
+    } else if (event.target === listFacts) {
       fetch(`${members_path}/${listID.value}/facts`, {
         method: "GET",
         headers: {
@@ -143,7 +150,6 @@ function handle_ajax(event) {
             resultsDiv.innerHTML = "";
             response.json().then((data) => {
               if (data.length > 0) {
-                console.log(data);
                 for (let i = 0; i < data.length; i++) {
                   let parag = document.createElement("P");
                   parag.textContent = JSON.stringify(data[i]);
@@ -163,8 +169,8 @@ function handle_ajax(event) {
         });
     } else if (event.target === createMemberFacts) {
       var dataObject = {
-        memberFacts: memberFacts.value,
-        memberLikes: memberLikes.value,
+        fact_text: memberFacts.value,
+        likes: memberLikes.value,
       };
       fetch(`${members_path}/${factsID.value}/facts`, {
         method: "POST",
@@ -181,7 +187,70 @@ function handle_ajax(event) {
             parag.textContent = JSON.stringify(data);
             resultsDiv.appendChild(parag);
           });
+        } else {
+          response
+            .json()
+            .then((data) => {
+              alert(
+                `Return code ${response.status} ${
+                  response.statusText
+                } ${JSON.stringify(data)}`
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+              alert(error);
+            });
         }
+      });
+    } else if (event.target === updateMemberFacts) {
+      let dataObject = {
+        fact_text: updateMemberFact.value,
+        likes: updateMemberLike.value,
+      };
+      fetch(`${members_path}/${updateMemberID.value}/facts/${factID.value}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: authHeader,
+        },
+        body: JSON.stringify(dataObject),
+      }).then((response) => {
+        if (response.status === 200) {
+          response.json().then((data) => {
+            resultsDiv.innerHTML = "";
+            let parag = document.createElement("P");
+            parag.textContent = JSON.stringify(data);
+            resultsDiv.appendChild(parag);
+          });
+        } else {
+          response
+            .json()
+            .then((data) => {
+              alert(
+                `Return code ${response.status} ${
+                  response.statusText
+                } ${JSON.stringify(data)}`
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+              alert(error);
+            });
+        }
+      });
+    } else if (event.target === deleteFact) {
+      fetch(
+        `${members_path}/${deleteMemberID.value}/facts/${deleteFactID.value}`,
+        {
+          method: "Delete",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: authHeader,
+          },
+        }
+      ).then(() => {
+        resultsDiv.innerHTML = "Delete Successful!";
       });
     }
   });
