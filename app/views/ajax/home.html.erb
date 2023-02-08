@@ -1,13 +1,99 @@
 <h1>AJAX</h1>
 <p>Find me in app/views/ajax/home.html.erb</p>
 <%= link_to 'Session', '/ajax/session' %>
-<div id="rest-ops">
-<button id="list-members" type="button">List members</button><br>
-<label>member first name</label><input id="member-firstName"><label>member last name</label>
-<input id="member-lastName"><button id="create-member" type="button">Create member</button><br>
-<label>member ID</label><input id="member-id" type="number"><label>member first name</label>
-<input id="member-firstName1"><label>member last name</label>
-<input id="member-lastName1"><button id="update-member" type="button">Update member</button><br>
+<div id="rest-ops" class="container-fluid">
+    <button id="list-members" type="button" class="mb-3">List members</button><br>
+
+    <div class="row m-1 text-center">
+        <div class="col-4">
+            <input class="text-center" id="member-firstName" placeholder="First Name">
+        </div>
+        <div class="col-4">
+            <input class="text-center" id="member-lastName" placeholder="Last Name">
+        </div>
+        <div class="col-4">
+            <button id="create-member" type="button">Create member</button><br>
+        </div>
+    </div>
+
+    <div class="row m-1 text-center">
+        <div class="col-3">
+            <input class="text-center" id="member-id" type="number" placeholder="Member ID">
+        </div>
+        <div class="col-3">
+            <input class="text-center" id="member-firstName1" placeholder="New First Name">
+        </div>
+        <div class="col-3">
+        <input class="text-center" id="member-lastName1" placeholder="New Last Name">
+        </div>
+        <div class="col-3">
+            <button id="update-member" type="button">Update member</button><br>
+        </div>
+    </div>
+
+    <div class="row m-1 text-center">
+        <div class="col-3">
+            <input class="text-center" id="facts-id" type="number" placeholder="Member ID">
+        </div>
+        <div class="col-3">
+            <input class="text-center" id="member-facts" placeholder="Fact">
+        </div>
+        <div class="col-3">
+            <input class="text-center" id="member-likes" placeholder="Like">
+        </div>
+        <div class="col-3">
+            <button id="create-member-facts" type="button">Create fact</button><br>
+        </div>
+    </div>
+
+    <div class="row m-1 text-center">
+        <div class="col-2 offset-1">
+            <input class="text-center" id="update-facts-id" type="number" placeholder="Member ID">
+        </div>
+        <div class="col-2">
+            <input class="text-center" id="fact-id" type="number" placeholder="Fact number">
+        </div>
+        <div class="col-2">
+            <input class="text-center" id="update-member-fact" placeholder="New Fact">
+        </div>
+        <div class="col-2">
+            <input class="text-center" id="update-member-likes" placeholder="New Like">
+        </div>
+        <div class="col-2">
+            <button id="update-member-facts" type="button">Update fact</button><br>
+        </div>
+    </div>
+    
+    <div class="row m-1 text-center">
+        <div class="col-6">
+            <input class="text-center" id="list-id" placeholder="Member ID" placeholder="Member ID">
+        </div>
+        <div class="col-6">
+            <button id="list-member-facts" type="button">List fact</button><br>
+        </div>
+    </div>
+
+    <div class="row m-1 text-center">
+        <div class="col-4">
+            <input class="text-center" id="delete-member-id" placeholder="Member ID">
+        </div>
+        <div class="col-4">
+            <input class="text-center" id="delete-fact-id" placeholder="Fact number">
+        </div>
+        <div class="col-4">
+            <button id="delete-fact" type="button">Delete Fact</button><br>
+        </div>
+    </div>
+
+    <div class="row m-1">
+        <div class="col-6">
+            <input class="text-center" id="delete-id" placeholder="Member ID">
+        </div>
+        <div class="col-6">
+            <button id="delete-member" type="button">Delete member</button>
+        </div>
+    </div>
 </div>
+
 <div id="results-div"></div>
 <%= javascript_pack_tag 'ajax_ops' %>
